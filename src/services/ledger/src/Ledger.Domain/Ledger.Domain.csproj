@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Ledger.Domain</RootNamespace>
+    <Description>Ledger Service Domain Layer - Immutable financial records with hash chain</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\building-blocks\Platform.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

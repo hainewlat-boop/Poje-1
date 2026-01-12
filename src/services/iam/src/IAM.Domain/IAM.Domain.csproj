@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>IAM.Domain</RootNamespace>
+    <Description>IAM Service Domain Layer - Entities, Value Objects, Domain Events</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\building-blocks\Platform.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

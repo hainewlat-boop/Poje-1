@@ -1,0 +1,124 @@
+# Prometheus configuration for Platform Observability
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'platform-monitor'
+
+# Alerting configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Rule files
+rule_files:
+  - "/etc/prometheus/rules/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # IAM Service
+  - job_name: 'iam-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['iam-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'iam'
+
+  # Application Service
+  - job_name: 'application-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['application-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'application'
+
+  # Payment Service
+  - job_name: 'payment-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['payment-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'payment'
+
+  # Ledger Service
+  - job_name: 'ledger-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['ledger-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'ledger'
+
+  # Audit Service
+  - job_name: 'audit-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['audit-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'audit'
+
+  # Document Service
+  - job_name: 'document-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['document-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'document'
+
+  # Notification Service
+  - job_name: 'notification-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['notification-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'notification'
+
+  # Reference Data Service
+  - job_name: 'reference-data-service'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['reference-data-service:8080']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'reference-data'
+
+  # Nginx Gateway
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:9113']
+
+  # PostgreSQL
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+
+  # Redis
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+
+  # RabbitMQ
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
