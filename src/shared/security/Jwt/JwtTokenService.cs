@@ -177,27 +177,27 @@ public static class ClaimsPrincipalExtensions
 {
     public static string? GetUserId(this ClaimsPrincipal principal)
     {
-        return principal.FindFirstValue(JwtRegisteredClaimNames.Sub);
+        return principal.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
     }
 
     public static string? GetSessionId(this ClaimsPrincipal principal)
     {
-        return principal.FindFirstValue("session_id");
+        return principal.FindFirst("session_id")?.Value;
     }
 
     public static string? GetEmail(this ClaimsPrincipal principal)
     {
-        return principal.FindFirstValue(JwtRegisteredClaimNames.Email);
+        return principal.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
     }
 
     public static string? GetFingerprintId(this ClaimsPrincipal principal)
     {
-        return principal.FindFirstValue("fingerprint_id");
+        return principal.FindFirst("fingerprint_id")?.Value;
     }
 
     public static bool IsMfaVerified(this ClaimsPrincipal principal)
     {
-        var value = principal.FindFirstValue("mfa_verified");
+        var value = principal.FindFirst("mfa_verified")?.Value;
         return bool.TryParse(value, out var result) && result;
     }
 

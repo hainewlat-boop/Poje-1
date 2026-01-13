@@ -28,8 +28,8 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status423Locked)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status423Locked)]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var command = new LoginCommand(
@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
 
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             response => Ok(response),
             error => error.Type switch
             {
@@ -62,7 +62,7 @@ public class AuthController : ControllerBase
     [HttpPost("mfa/verify")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> VerifyMfa([FromBody] MfaVerifyRequest request)
     {
         var command = new MfaVerifyCommand(
@@ -74,7 +74,7 @@ public class AuthController : ControllerBase
 
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             response => Ok(response),
             error => Unauthorized(CreateProblem(error)));
     }
@@ -85,7 +85,7 @@ public class AuthController : ControllerBase
     [HttpPost("refresh")]
     [AllowAnonymous]
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
     {
         var command = new RefreshTokenCommand(
@@ -94,7 +94,7 @@ public class AuthController : ControllerBase
 
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             response => Ok(response),
             error => Unauthorized(CreateProblem(error)));
     }
@@ -105,16 +105,16 @@ public class AuthController : ControllerBase
     [HttpPost("logout")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> Logout([FromBody] LogoutRequest? request)
+    public Task<IActionResult> Logout([FromBody] LogoutRequest? request)
     {
         // TODO: Implement logout command
         _logger.LogInformation("User logged out");
-        return NoContent();
+        return Task.FromResult<IActionResult>(NoContent());
     }
 
-    private static ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
+    private static Microsoft.AspNetCore.Mvc.ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
     {
-        return new ProblemDetails
+        return new Microsoft.AspNetCore.Mvc.ProblemDetails
         {
             Type = $"https://platform.gov.tr/errors/{error.Code.ToLowerInvariant().Replace(".", "/")}",
             Title = error.Code,

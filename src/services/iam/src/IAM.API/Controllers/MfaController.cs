@@ -28,8 +28,8 @@ public class MfaController : ControllerBase
     /// </summary>
     [HttpPost("enroll")]
     [ProducesResponseType(typeof(MfaEnrollResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> EnrollMfa([FromBody] MfaEnrollRequest request)
     {
         var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
@@ -42,7 +42,7 @@ public class MfaController : ControllerBase
         var command = new EnableMfaCommand(userId, request.Password);
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             response => Ok(response),
             error => error.Type switch
             {
@@ -57,7 +57,7 @@ public class MfaController : ControllerBase
     /// </summary>
     [HttpPost("confirm")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ConfirmMfa([FromBody] MfaConfirmRequest request, [FromQuery] string secret)
     {
         var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
@@ -70,14 +70,14 @@ public class MfaController : ControllerBase
         var command = new ConfirmMfaCommand(userId, secret, request.Code);
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             _ => Ok(new { message = "MFA enabled successfully" }),
             error => BadRequest(CreateProblem(error)));
     }
 
-    private static ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
+    private static Microsoft.AspNetCore.Mvc.ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
     {
-        return new ProblemDetails
+        return new Microsoft.AspNetCore.Mvc.ProblemDetails
         {
             Type = $"https://platform.gov.tr/errors/{error.Code.ToLowerInvariant().Replace(".", "/")}",
             Title = error.Code,

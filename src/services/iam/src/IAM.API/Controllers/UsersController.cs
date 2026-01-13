@@ -30,8 +30,8 @@ public class UsersController : ControllerBase
     [HttpPost]
     [Authorize(Roles = "admin")]
     [ProducesResponseType(typeof(UserResponse), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
     {
         var command = new CreateUserCommand(
@@ -45,7 +45,7 @@ public class UsersController : ControllerBase
 
         var result = await _mediator.Send(command);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             user => CreatedAtAction(nameof(GetUser), new { id = user.Id }, user),
             error => error.Type switch
             {
@@ -60,13 +60,13 @@ public class UsersController : ControllerBase
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetUser(Guid id)
     {
         var query = new GetUserQuery(id);
         var result = await _mediator.Send(query);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             user => Ok(user),
             error => NotFound(CreateProblem(error)));
     }
@@ -76,7 +76,7 @@ public class UsersController : ControllerBase
     /// </summary>
     [HttpGet("me")]
     [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetCurrentUser()
     {
         var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
@@ -89,14 +89,14 @@ public class UsersController : ControllerBase
         var query = new GetUserQuery(id);
         var result = await _mediator.Send(query);
 
-        return result.Match(
+        return result.Match<IActionResult>(
             user => Ok(user),
             error => NotFound(CreateProblem(error)));
     }
 
-    private static ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
+    private static Microsoft.AspNetCore.Mvc.ProblemDetails CreateProblem(Platform.BuildingBlocks.Result.Error error)
     {
-        return new ProblemDetails
+        return new Microsoft.AspNetCore.Mvc.ProblemDetails
         {
             Type = $"https://platform.gov.tr/errors/{error.Code.ToLowerInvariant().Replace(".", "/")}",
             Title = error.Code,

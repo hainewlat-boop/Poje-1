@@ -2,6 +2,7 @@ using System.Text;
 using FluentValidation;
 using IAM.Application.Behaviors;
 using IAM.Application.Commands;
+using MediatR;
 using IAM.Domain.Repositories;
 using IAM.Infrastructure.Persistence;
 using IAM.Infrastructure.Persistence.Repositories;

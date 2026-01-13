@@ -29,7 +29,7 @@ public class OtptController : ControllerBase
     /// </summary>
     [HttpPost("issue")]
     [ProducesResponseType(typeof(OtptResponseDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ProblemDetails), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> IssueOtpt([FromBody] OtptRequestDto request)
     {
         var userId = User.GetUserId();
@@ -38,7 +38,7 @@ public class OtptController : ControllerBase
 
         if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(sessionId) || string.IsNullOrEmpty(fingerprintId))
         {
-            return Unauthorized(new ProblemDetails
+            return Unauthorized(new Microsoft.AspNetCore.Mvc.ProblemDetails
             {
                 Type = "https://platform.gov.tr/errors/auth/invalid-session",
                 Title = "Auth.InvalidSession",
@@ -58,7 +58,7 @@ public class OtptController : ControllerBase
 
         return result.Match(
             token => Ok(token),
-            error => StatusCode(StatusCodes.Status500InternalServerError, new ProblemDetails
+            error => StatusCode(StatusCodes.Status500InternalServerError, new Microsoft.AspNetCore.Mvc.ProblemDetails
             {
                 Type = "https://platform.gov.tr/errors/otpt/issue-failed",
                 Title = error.Code,
