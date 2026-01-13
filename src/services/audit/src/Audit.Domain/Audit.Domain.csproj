@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Audit.Domain</RootNamespace>
+    <Description>Audit Service Domain Layer - Immutable audit events with hash chain</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\building-blocks\Platform.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

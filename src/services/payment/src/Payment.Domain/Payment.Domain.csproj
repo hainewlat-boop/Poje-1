@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Payment.Domain</RootNamespace>
+    <Description>Payment Service Domain Layer</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\building-blocks\Platform.BuildingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

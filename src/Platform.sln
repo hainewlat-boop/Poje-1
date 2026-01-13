@@ -1,0 +1,112 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+
+# Shared Building Blocks
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.BuildingBlocks", "shared\building-blocks\Platform.BuildingBlocks.csproj", "{A1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Contracts", "shared\contracts\Platform.Contracts.csproj", "{A1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Security", "shared\security\Platform.Security.csproj", "{A1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+
+# IAM Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAM.Domain", "services\iam\src\IAM.Domain\IAM.Domain.csproj", "{B1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAM.Application", "services\iam\src\IAM.Application\IAM.Application.csproj", "{B1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAM.Infrastructure", "services\iam\src\IAM.Infrastructure\IAM.Infrastructure.csproj", "{B1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAM.API", "services\iam\src\IAM.API\IAM.API.csproj", "{B1B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Application Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Domain", "services\application\src\Application.Domain\Application.Domain.csproj", "{C1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Application", "services\application\src\Application.Application\Application.Application.csproj", "{C1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Infrastructure", "services\application\src\Application.Infrastructure\Application.Infrastructure.csproj", "{C1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.API", "services\application\src\Application.API\Application.API.csproj", "{C1B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Payment Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Domain", "services\payment\src\Payment.Domain\Payment.Domain.csproj", "{D1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Application", "services\payment\src\Payment.Application\Payment.Application.csproj", "{D1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Infrastructure", "services\payment\src\Payment.Infrastructure\Payment.Infrastructure.csproj", "{D1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.API", "services\payment\src\Payment.API\Payment.API.csproj", "{D1B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Ledger Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledger.Domain", "services\ledger\src\Ledger.Domain\Ledger.Domain.csproj", "{E1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledger.Application", "services\ledger\src\Ledger.Application\Ledger.Application.csproj", "{E1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledger.Infrastructure", "services\ledger\src\Ledger.Infrastructure\Ledger.Infrastructure.csproj", "{E1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ledger.API", "services\ledger\src\Ledger.API\Ledger.API.csproj", "{E1B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Audit Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.Domain", "services\audit\src\Audit.Domain\Audit.Domain.csproj", "{F1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.Application", "services\audit\src\Audit.Application\Audit.Application.csproj", "{F1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.Infrastructure", "services\audit\src\Audit.Infrastructure\Audit.Infrastructure.csproj", "{F1B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audit.API", "services\audit\src\Audit.API\Audit.API.csproj", "{F1B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Document Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document.Domain", "services\document\src\Document.Domain\Document.Domain.csproj", "{11B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document.Application", "services\document\src\Document.Application\Document.Application.csproj", "{11B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document.Infrastructure", "services\document\src\Document.Infrastructure\Document.Infrastructure.csproj", "{11B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Document.API", "services\document\src\Document.API\Document.API.csproj", "{11B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Notification Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Domain", "services\notification\src\Notification.Domain\Notification.Domain.csproj", "{21B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Application", "services\notification\src\Notification.Application\Notification.Application.csproj", "{21B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Infrastructure", "services\notification\src\Notification.Infrastructure\Notification.Infrastructure.csproj", "{21B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.API", "services\notification\src\Notification.API\Notification.API.csproj", "{21B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Reference Data Service
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceData.Domain", "services\reference-data\src\ReferenceData.Domain\ReferenceData.Domain.csproj", "{31B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceData.Application", "services\reference-data\src\ReferenceData.Application\ReferenceData.Application.csproj", "{31B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceData.Infrastructure", "services\reference-data\src\ReferenceData.Infrastructure\ReferenceData.Infrastructure.csproj", "{31B2C3D4-3333-3333-3333-333333333333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceData.API", "services\reference-data\src\ReferenceData.API\ReferenceData.API.csproj", "{31B2C3D4-4444-4444-4444-444444444444}"
+EndProject
+
+# Tests
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Tests.Unit", "..\..\tests\unit\Platform.Tests.Unit.csproj", "{T1B2C3D4-1111-1111-1111-111111111111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Tests.Integration", "..\..\tests\integration\Platform.Tests.Integration.csproj", "{T1B2C3D4-2222-2222-2222-222222222222}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1B2C3D4-1111-1111-1111-111111111111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-1111-1111-1111-111111111111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-1111-1111-1111-111111111111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-1111-1111-1111-111111111111}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
